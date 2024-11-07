@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pamoja Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            background-color: #007bff;
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .navbar .menu li {
+            display: inline;
+        }
+        .navbar .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .feature h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .feature p {
+            font-size: 14px;
+            color: #666;
+        }
+        .feature a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .feature a:hover {
+            background: #0056b3;
+        }
+        .feature i {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <h1>Pamoja Dashboard</h1>
+        <ul class="menu">
+            <li><a href="{% url 'home' %}">Logout</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-share-alt"></i>
+            <h2>Social Media Management</h2>
+            <p>Manage and schedule posts across multiple platforms.</p>
+            <a href="{% url 'social_media_accounts' %}">Manage Social Media</a>
+        </div>
+        
+        <div class="feature">
+            <i class="fas fa-globe"></i>
+            <h2>Website Management</h2>
+            <p>Manage website content, design, and performance.</p>
+            <a href="https://www.socialhub.co.zw">Manage Websites</a>
+        </div>
+        
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h2>CRM</h2>
+            <p>Manage customer information and sales pipelines.</p>
+            <a href="{% url 'crm' %}">Manage CRM</a>
+        </div>
+    <!--
+        <div class="feature">
+            <i class="fas fa-chart-line"></i>
+            <h2>Analytics</h2>
+            <p>Monitor and analyze business performance metrics.</p>
+            <a href="{% url 'analytics' %}">View Analytics</a>
+        </div>
+    -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Pamoja. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
