@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Overview</title>
+    <!-- Add your CSS here -->
+</head>
+<body>
+    <h1>Account Overview</h1>
+    <a href="{% url 'connect_account' %}">Connect New Account</a>
+    <ul>
+        {% for account in accounts %}
+            <li>{{ account.platform }} - {{ account.username }}
+                <a href="{% url 'disconnect_account' account.id %}">Disconnect</a>
+            </li>
+        {% empty %}
+            <li>No accounts connected.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

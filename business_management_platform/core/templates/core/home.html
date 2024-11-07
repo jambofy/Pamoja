@@ -1,0 +1,344 @@
+<!-- store/templates/store/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Pamoja </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+     /* store/static/store/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 20px ;
+    position: sticky;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #333;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.feature {
+    background:white;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    max-width: 300px;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+.feature h2 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+/* Modal Styles */
+.modal {
+    display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: wheat;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 20px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.search {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 80%;
+    max-width: 600px;
+}
+
+.contact-form {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-group button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #0056b3;
+}
+.newsletter {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.newsletter input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 70%;
+    margin-right: 10px;
+}
+
+.newsletter button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Pamoja!</h1>
+        <p><span>Your application for managing your business</span></p>
+        <div class="buttons">
+            <a href="{% url 'login' %}" class="btn"><strong>Login</strong></a>
+            <a href="{% url 'register' %}" class="btn"><strong>Signup</strong></a>
+            <a href="{% url 'contact_us' %}" class="btn"><strong>Contact Us</a>
+        </div>
+
+        <section class="search">
+            <input type="text" placeholder="Search..." id="search-bar">
+        </section>
+
+    </header>
+<main>
+    <section class="features">
+
+        <!-- Feature Modals -->
+        <div id="feature-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="feature-title">Feature Title</h2>
+                <p id="feature-description">Feature Description</p>
+            </div>
+        </div>
+
+
+        <div class="feature">
+            <h2>Product</h2>
+            <i class="fas fa-shopping-basket"></i>
+            <p>Streamline your selling process</p>
+        </div>
+
+        <div class="feature">
+            <h2>Services</h2>
+            <i class="fas fa-handshake"></i>
+            <p>Streamline your selling process</p>
+        </div>
+
+
+        <div class="feature">
+            <h2>Content Creation</h2>
+            <i class="fas fa-edit"></i>
+            <p>Create, edit, and manage content with an intuitive editor.</p>
+        </div>
+
+        <div class="feature">
+            <h2>Marketing</h2>
+            <i class="fas fa-bullhorn"></i>
+            <p>Streamline your shopping experience with self-service kiosks.</p>
+        </div>
+
+        <div class="feature">
+            <h2>Sales</h2>
+            <i class="fas fa-coins"></i>
+            <p>Close deals faster.</p>
+            
+        </div>
+       
+        <div class="feature">          
+            <h2>CRM</h2>
+            <i class="fas fa-users"></i> 
+            <p>Manage your transactions and accounts details effortlessly.</p>
+        </div>
+        
+    </section>
+
+    <section class="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest updates and offers.</p>
+        <form id="newsletter-form">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+    </section>
+</main>  
+    <footer>
+        <p>&copy; 2024 Pamoja. All rights reserved.</p>
+    </footer>
+    <script>
+        // JavaScript for Modal
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('feature-modal');
+    const closeBtn = document.querySelector('.close');
+
+    document.querySelectorAll('.feature').forEach(feature => {
+        feature.addEventListener('click', () => {
+            const title = feature.querySelector('h2').innerText;
+            const description = feature.querySelector('p').innerText;
+            document.getElementById('feature-title').innerText = title;
+            document.getElementById('feature-description').innerText = description;
+            modal.style.display = 'block';
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+// JavaScript for Search Functionality
+document.getElementById('search-bar').addEventListener('input', (event) => {
+    const query = event.target.value.toLowerCase();
+    document.querySelectorAll('.feature').forEach(feature => {
+        const title = feature.querySelector('h2').innerText.toLowerCase();
+        const description = feature.querySelector('p').innerText.toLowerCase();
+        if (title.includes(query) || description.includes(query)) {
+            feature.style.display = '';
+        } else {
+            feature.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

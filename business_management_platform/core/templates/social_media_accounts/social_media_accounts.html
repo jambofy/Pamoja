@@ -1,0 +1,132 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            margin: 0;
+            padding: 0;
+           
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #007bff;
+            height: 100vh;
+            padding: 20px;
+            color: white;
+            font-weight: bolder;
+        }
+        .sidebar h2 {
+            margin: 15px 15px 35px 25px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px  15px  45px;
+        }
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar ul li a:hover {
+            background-color: #7b1a8f;
+            padding: 8px 8px 8px;
+            border-radius: 20px;
+        }
+        .sidebar ul li a i {
+            margin-right: 5px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: wheat;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+        #content-area {
+            text-align: center;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Social Media Management</h2>
+        <ul>
+            <li><a href="#" data-url="{% url 'dashboard_overview' %}"><i class="fas fa-home"></i> Dashboard Overview</a></li>
+            <li><a href="#" data-url="{% url 'account_management' %}"><i class="fas fa-users"></i> Account Management</a></li>
+            <li><a href="#" data-url="{% url 'post_scheduling' %}"><i class="fas fa-calendar-alt"></i> Post Scheduling</a></li>
+            <li><a href="#" data-url="{% url 'content_creation' %}"><i class="fas fa-edit"></i> Create Content</a></li>
+            <li><a href="#" data-url="{% url 'analytics_insights' %}"><i class="fas fa-chart-line"></i> Analytics & Insights</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content" id="content-area">
+        <!-- Dynamic content will be loaded here -->
+        <h1>Welcome to Social Media Management</h1>
+        <p>Select an option from the sidebar to view details.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.sidebar a');
+            const contentArea = document.getElementById('content-area');
+            
+            links.forEach(link => {
+                link.addEventListener('click', async (event) => {
+                    event.preventDefault(); // Prevent default link behavior
+                    const url = link.getAttribute('data-url');
+                    
+                    try {
+                        const response = await fetch(url);
+                        if (response.ok) {
+                            const text = await response.text();
+                            contentArea.innerHTML = text;
+                        } else {
+                            contentArea.innerHTML = '<p>Content not available</p>';
+                        }
+                    } catch (error) {
+                        contentArea.innerHTML = '<p>Error loading content</p>';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
