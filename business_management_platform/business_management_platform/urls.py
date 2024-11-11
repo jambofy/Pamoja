@@ -26,6 +26,7 @@ urlpatterns = [
     path('register/', include('core.urls')),  # Adjust if necessary
     path('login/', include('django.contrib.auth.urls')),  # Use Django's built-in auth URLs
     path('logout/', include('django.contrib.auth.urls')),
+    path('api/', include('finance.urls')),
    
 ]
 
