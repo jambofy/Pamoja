@@ -1,8 +1,16 @@
 from django.urls import path
 from . import views
 from .views import home, RegisterView, LoginView, dashboard
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import BusinessViewSet, TransactionViewSet
+
+router = DefaultRouter()
+router.register(r'businesses', BusinessViewSet)
+router.register(r'transactions', TransactionViewSet, basename='transaction')
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('', home, name='home'),
     path('contact/', views.contact_us, name='contact_us'),
     path('newsletter/', views.newsletter_signup, name='newsletter_signup'),

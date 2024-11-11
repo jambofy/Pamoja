@@ -1,6 +1,6 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import json
-from models import Business, Transaction, Account
+from core.models import Business, Transaction, Account
 
 class AccountingHandler(SimpleHTTPRequestHandler):
     def do_GET(self):

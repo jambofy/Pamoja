@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'core',
     'rest_framework',
     'corsheaders',
-    'finance',
+    
 ]
 
 # Redirect users after login/logout
